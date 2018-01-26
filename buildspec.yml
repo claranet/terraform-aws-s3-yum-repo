@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - yum install -y createrepo
+  pre_build:
+    commands:
+      - aws configure set s3.signature_version s3v4
+  build:
+    commands:
+      - mkdir -p repo
+      - cd repo
+      - aws s3 sync "${REPO_S3_URL}" .
+      - createrepo --verbose --update --simple-md-filenames .
+      - aws s3 sync . "${REPO_S3_URL}"

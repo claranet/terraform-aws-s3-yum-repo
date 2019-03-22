@@ -1,7 +1,7 @@
 # Create a Lambda function that starts CodeBuild.
 
 module "auto_build_yum_repo" {
-  source = "github.com/claranet/terraform-aws-lambda?ref=v0.7.0"
+  source = "github.com/claranet/terraform-aws-lambda?ref=v0.11.3"
 
   function_name = "${var.codebuild_name}-auto-build"
   handler       = "lambda.lambda_handler"
